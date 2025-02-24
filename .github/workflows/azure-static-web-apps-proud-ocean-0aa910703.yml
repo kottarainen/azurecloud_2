@@ -28,6 +28,12 @@ jobs:
           html-minifier --collapse-whitespace --remove-comments --minify-css true --minify-js true -o index.html.min index.html
           mv index.html.min index.html
 
+      - name: Install HTML Linter
+        run: npm install -g htmlhint
+
+      - name: Run HTML Linter
+        run: htmlhint index.html || exit 1
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
